@@ -48,10 +48,13 @@ export interface NuxtStrapiResetPasswordData {
   passwordConfirmation: string;
 }
 
+export type NuxtStrapiVersion = 3 | 4
+
 export interface NuxtStrapiModuleOptions {
+  version: NuxtStrapiVersion
   url: string
-  entities: string[],
-  key: string,
-  expires: 'session' | string | number,
+  entities: string[]
+  key: string
+  expires: 'session' | string | number
   cookie: CookieSerializeOptions
 }

@@ -5,6 +5,7 @@ import { name, version } from '../package.json'
 import { NuxtStrapiModuleOptions } from './runtime/types'
 
 const defaults: NuxtStrapiModuleOptions = {
+  version: 3,
   url: process.env.STRAPI_URL || 'http://localhost:1337',
   entities: [],
   key: 'strapi_jwt',

@@ -20,6 +20,7 @@ export class Strapi extends Hookable {
   $cookies: NuxtCookies
   $http: NuxtHTTPInstance
   options: StrapiOptions
+  versionPrefix: string
 
   constructor (ctx, options: StrapiOptions) {
     super()
@@ -29,15 +30,16 @@ export class Strapi extends Hookable {
     this.$cookies = ctx.app.$cookies
     this.$http = ctx.$http.create({})
     this.options = options
+    this.versionPrefix = runtimeConfig.version === 4 ? '/api' : ''
 
     this.state = Vue.observable({ user: null })
 
     this.syncToken()
     const url = runtimeConfig.url || this.options.url
     if (process.server && ctx.req && url.startsWith('/')) {
-      this.$http.setBaseURL(joinURL(reqURL(ctx.req), url))
+      this.$http.setBaseURL(joinURL(reqURL(ctx.req), url) + this.versionPrefix)
     } else {
-      this.$http.setBaseURL(url)
+      this.$http.setBaseURL(url + this.versionPrefix)
     }
     this.$http.onError((err) => {
       if (!err.response) {
@@ -161,7 +163,8 @@ export class Strapi extends Hookable {
   }
 
   graphql<T = any> (query): Promise<T> {
-    return this.$http.$post<{ data: T }>('/graphql', query).then(res => res.data)
+    const baseUrl = this.$http.getBaseURL().replace('/api', '')
+    return this.$http.$post<{ data: T }>(`${baseUrl}/graphql`, query).then(res => res.data)
   }
 
   private getClientStorage () {
