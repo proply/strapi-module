@@ -14,7 +14,7 @@
       "@nuxt/types"
     ],
     "paths": {
-      "@nuxtjs/strapi/*": [
+      "@proply/strapi/*": [
         "src/*"
       ]
     }

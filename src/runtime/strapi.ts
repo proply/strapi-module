@@ -30,7 +30,7 @@ export class Strapi extends Hookable {
     this.$cookies = ctx.app.$cookies
     this.$http = ctx.$http.create({})
     this.options = options
-    this.versionPrefix = runtimeConfig.version === 4 ? '/api' : ''
+    this.versionPrefix = options.version === 4 ? '/api' : ''
 
     this.state = Vue.observable({ user: null })
 

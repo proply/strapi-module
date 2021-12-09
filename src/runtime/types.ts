@@ -1,6 +1,7 @@
 import { CookieSerializeOptions } from 'cookie'
 
 export type NuxtStrapiUser = Record<string, any>
+export type NuxtStrapiVersion = 3 | 4
 
 export type NuxtStrapiQueryParams =
   string |
@@ -16,6 +17,7 @@ export interface NuxtStrapiLoginResult {
 export interface StrapiOptions {
   url: string
   key: string
+  version: NuxtStrapiVersion
   expires: 'session' | number
   cookie: CookieSerializeOptions
 }
@@ -47,8 +49,6 @@ export interface NuxtStrapiResetPasswordData {
   password: string;
   passwordConfirmation: string;
 }
-
-export type NuxtStrapiVersion = 3 | 4
 
 export interface NuxtStrapiModuleOptions {
   version: NuxtStrapiVersion

@@ -1,12 +1,20 @@
 <template>
   <div>
-    <h1>@nuxtjs/strapi</h1>
+    <h1>@proply/strapi</h1>
     <h2>$strapi.state</h2>
     <pre>{{ JSON.stringify($strapi.state) }}</pre>
     <h2>options.url</h2>
     <pre>{{ $strapi.$http._defaults.prefixUrl }}</pre>
   </div>
 </template>
+
+<script>
+export default {
+  mounted () {
+    console.log(this.$strapi)
+  }
+}
+</script>
 
 <style scoped>
 div {
