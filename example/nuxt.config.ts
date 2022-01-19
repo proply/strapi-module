@@ -7,6 +7,7 @@ export default <NuxtConfig>{
   ],
 
   strapi: {
+    url: 'https://api.proply.no',
     version: 4,
     entities: ['products']
   }

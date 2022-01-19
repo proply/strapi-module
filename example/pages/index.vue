@@ -12,6 +12,7 @@
 export default {
   mounted () {
     console.log(this.$strapi)
+    console.log(this.$strapi.graphql('test'))
   }
 }
 </script>

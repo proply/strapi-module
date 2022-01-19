@@ -163,7 +163,8 @@ export class Strapi extends Hookable {
   }
 
   graphql<T = any> (query): Promise<T> {
-    const baseUrl = this.$http.getBaseURL().replace('/api', '')
+    const url = this.$http.getBaseURL()
+    const baseUrl = url.substring(0, url.lastIndexOf('/api'))
     return this.$http.$post<{ data: T }>(`${baseUrl}/graphql`, query).then(res => res.data)
   }
 
